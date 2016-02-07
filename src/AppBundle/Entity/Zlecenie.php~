@@ -1,0 +1,271 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Zlecenie
+ *
+ * @ORM\Table(name="zlecenie")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ZlecenieRepository")
+ */
+class Zlecenie
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Klient")
+     * @ORM\JoinColumn(name="klient", referencedColumnName="id")
+     */
+    private $klient;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Programista")
+     * @ORM\JoinColumn(name="programista", referencedColumnName="id")
+     */
+    private $programista;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nazwa", type="string", length=255)
+     */
+    private $nazwa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="opis", type="string", length=255)
+     */
+    private $opis;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Technologia")
+     * @ORM\JoinColumn(name="technologia", referencedColumnName="id")
+     */
+    private $technologia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=40)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="zlecono", type="datetime")
+     */
+    private $zlecono;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="wykonano", type="datetime", nullable=true)
+     */
+    private $wykonano;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idKlienta
+     *
+     * @param integer $idKlienta
+     * @return Zlecenie
+     */
+    public function setIdKlienta($idKlienta)
+    {
+        $this->idKlienta = $idKlienta;
+
+        return $this;
+    }
+
+    /**
+     * Get idKlienta
+     *
+     * @return integer 
+     */
+    public function getIdKlienta()
+    {
+        return $this->idKlienta;
+    }
+
+    /**
+     * Set programista
+     *
+     * @param integer $programista
+     * @return Zlecenie
+     */
+    public function setProgramista($programista)
+    {
+        $this->programista = $programista;
+
+        return $this;
+    }
+
+    /**
+     * Get programista
+     *
+     * @return integer 
+     */
+    public function getProgramista()
+    {
+        return $this->programista;
+    }
+
+    /**
+     * Set nazwa
+     *
+     * @param string $nazwa
+     * @return Zlecenie
+     */
+    public function setNazwa($nazwa)
+    {
+        $this->nazwa = $nazwa;
+
+        return $this;
+    }
+
+    /**
+     * Get nazwa
+     *
+     * @return string 
+     */
+    public function getNazwa()
+    {
+        return $this->nazwa;
+    }
+
+    /**
+     * Set opis
+     *
+     * @param string $opis
+     * @return Zlecenie
+     */
+    public function setOpis($opis)
+    {
+        $this->opis = $opis;
+
+        return $this;
+    }
+
+    /**
+     * Get opis
+     *
+     * @return string 
+     */
+    public function getOpis()
+    {
+        return $this->opis;
+    }
+
+    /**
+     * Set technologia
+     *
+     * @param integer $technologia
+     * @return Zlecenie
+     */
+    public function setTechnologia($technologia)
+    {
+        $this->technologia = $technologia;
+
+        return $this;
+    }
+
+    /**
+     * Get technologia
+     *
+     * @return integer 
+     */
+    public function getTechnologia()
+    {
+        return $this->technologia;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Zlecenie
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set zlecono
+     *
+     * @param \DateTime $zlecono
+     * @return Zlecenie
+     */
+    public function setZlecono($zlecono)
+    {
+        $this->zlecono = $zlecono;
+
+        return $this;
+    }
+
+    /**
+     * Get zlecono
+     *
+     * @return \DateTime 
+     */
+    public function getZlecono()
+    {
+        return $this->zlecono;
+    }
+
+    /**
+     * Set wykonano
+     *
+     * @param \DateTime $wykonano
+     * @return Zlecenie
+     */
+    public function setWykonano($wykonano)
+    {
+        $this->wykonano = $wykonano;
+
+        return $this;
+    }
+
+    /**
+     * Get wykonano
+     *
+     * @return \DateTime 
+     */
+    public function getWykonano()
+    {
+        return $this->wykonano;
+    }
+}

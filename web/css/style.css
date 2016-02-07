@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Cambay:400,700|Kanit:600);
+body{
+	font-family: 'Cambay', sans-serif;
+}
+h1,h2,h3,h4,h5{
+/* font-family: 'Kanit', sans-serif; */
+}
