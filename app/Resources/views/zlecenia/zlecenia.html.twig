@@ -22,7 +22,7 @@
     </thead>
     <tbody>
     {% for z in zlecenia %}
-    <tr class="info">
+    <tr class="{{ z.status=="GOTOWE"?'success':'warning' }}">
         <td class="text-center">{{ z.id }}</td>
         <td class="text-center">{{ z.nazwa }}</i></td>
         <td class="text-center">{{ z.klient.imie }} {{ z.klient.nazwisko }}</i></td>
@@ -38,6 +38,11 @@
         <td class="text-center">
             <a href="/remove/zlecenie/{{ z.id }}">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a>
+        </td>
+        <td class="text-center">
+            <a href="/zlecenie/status/{{ z.id }}">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
             </a>
         </td>
     </tr>

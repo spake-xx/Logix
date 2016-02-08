@@ -22,7 +22,12 @@ class ZlecenieType extends AbstractType
         $builder
             ->add('nazwa', TextType::class)
             ->add('opis', TextType::class)
-            ->add('status', TextType::class)
+            ->add('status', ChoiceType::class, array(
+                'choices'=>array(
+                    'GOTOWE'=>'GOTOWE',
+                    'W REALIZACJI'=>'W REALIZACJI'
+                )
+            ))
             ->add('klient', 'entity', array(
                 'class' => 'AppBundle:Klient',
             ))

@@ -7,6 +7,7 @@ use AppBundle\Form\ZlecenieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ZlecenieController extends Controller
 {
@@ -43,6 +44,31 @@ class ZlecenieController extends Controller
         return $this->render('zlecenia/dodaj_zlecenie.html.twig', array(
             'zlecenie_form' => $zlecenie_form->createView(),
         ));
+    }
+
+    /**
+     * @Route("/zlecenie/status/{id}", name="zlecenie_status")
+     */
+    public function zmienStatusAction($id){
+        $em = $this->getDoctrine()->getManager();
+
+        $zlecenie = $em->getRepository('AppBundle:Zlecenie')->find($id);
+
+        switch($zlecenie->getStatus()){
+            case "GOTOWE":
+                print "zmieniono na realizacje";
+                $zlecenie->setStatus('W REALIZACJI');
+                break;
+            case 'W REALIZACJI':
+                $zlecenie->setStatus('GOTOWE');
+                break;
+            default:
+                break;
+        }
+
+        $em->flush();
+
+        return $this->redirectToRoute('zlecenia_wyswietl');
     }
 
     /**
